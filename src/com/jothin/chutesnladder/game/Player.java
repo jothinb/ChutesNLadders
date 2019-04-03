@@ -1,6 +1,18 @@
-package com.jothin.chutesnladder.board;
+package com.jothin.chutesnladder.game;
+
+import com.jothin.chutesnladder.board.Spinner;
+import com.jothin.chutesnladder.board.Square;
+
+/**
+ *  The Player class.
+ * @author jothinadhamuni
+ *
+ */
 public class Player {
 	
+	/**
+	 * Player's current position in Gameboard.
+	 */
 	private Square currentPosition;
 
 	public Player() {
@@ -12,8 +24,14 @@ public class Player {
 		this.spinPositionRank = spinPositionRank;
 	}
 	
+	/**
+	 * The player Name.
+	 */
 	private String name;
 	
+	/**
+	 * First Spin score.
+	 */
 	private int spinPositionRank;
 
 	public Square getCurrentPosition() {

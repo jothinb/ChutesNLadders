@@ -3,12 +3,16 @@ import java.util.Random;
 
 public class Spinner {
 	int maxNum;
-	public Spinner(int maxNum){
+	int minNum;
+	public Spinner(int minNum,int maxNum){
 		this.maxNum=maxNum;
+		this.minNum=minNum;
 	}
 	public  int  spin() {
 		java.util.Random r = new Random();
-		return r.nextInt(maxNum)+1;
+		//return (int) (minNum + Math.round((maxNum-minNum) * Math.random()));
+		//return r.nextInt(maxNum)+1;
+		return r.nextInt((maxNum - minNum) + 1) + minNum;
 	}
 
 }
