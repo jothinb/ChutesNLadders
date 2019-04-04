@@ -33,14 +33,26 @@ public final class ChutesNLadders implements IGame {
 	 */
 	private Spinner spinner;
 	
+	/**
+	 * The Players array
+	 */
+	private String[] players ;
+	
 	
 	
 	/**
 	 * The default constructor to create ChutesNLadders with 10*10 board and Spinner
 	 */
-	public ChutesNLadders() {
+	private ChutesNLadders() {
 		this.spinner = createSpinner(SPIN_MIN, SPIN_MAX);
 		this.board = prepareBoard(BOARD_SIZE, LADDER_SQUARES, CHUTES_SQUARES);
+	}
+	
+	/**
+	 * The default constructor to create ChutesNLadders with 10*10 board and Spinner
+	 */
+	public ChutesNLadders(String[] playerNames) {
+		this();
 	}
 
 	
@@ -74,9 +86,9 @@ public final class ChutesNLadders implements IGame {
 	/* (non-Javadoc)
 	 * @see com.jothin.chutesnladder.game.IGame#play(java.lang.String[])
 	 */
-	public void play(String [] playerNames) {
+	public void play() {
 		
-		Player[] players  = preparePlayerList(playerNames);
+		Player[] players  = preparePlayerList(this.players);
 		if (null == players || players.length < 2) {
 			System.out.println("ChutesNLadders requires minimum 2  players to start the Game ");
 			System.exit(0);
@@ -142,6 +154,74 @@ public final class ChutesNLadders implements IGame {
 		};
 		Arrays.sort(players, compareByFirstSpinRank);
 		return players;
+
+	}
+	
+	
+	/**
+	 * The ChutesNLaddersBuilder build game instance with different board sizes, spin range and players.
+	 * @author jothinadhamuni
+	 *
+	 */
+	public static class ChutesNLaddersBuilder {
+		/**
+		 * The ChutesNLadders Game Board.
+		 */
+		private Board board;
+
+		/**
+		 * The spinner which produces the random value.
+		 */
+		private Spinner spinner;
+
+		/**
+		 * The Players array
+		 */
+		private String[] players;
+
+		/**
+		 * ChutesNLaddersBuilder with Board. 
+		 * @param noOfSquares total no of squares.
+		 * @param ladderSquares  Ladders start and end values as an rray
+		 * @param chutesSquares  Chutes start and end values as an array
+		 */
+		public ChutesNLaddersBuilder(int noOfSquares, int[][] ladderSquares, int[][] chutesSquares) {
+			this.board = new Board(noOfSquares, ladderSquares, chutesSquares);
+			;
+		}
+
+		/**
+		 * ChutesNLaddersBuilder with Spinner.
+		 * @param min Minimum  value for spinner.
+		 * @param max Maximum value for spinner
+		 * @return ChutesNLaddersBuilder
+		 */
+		public ChutesNLaddersBuilder withSpinner(int min, int max) {
+			Spinner spinner = new Spinner(min, max);
+			this.spinner = spinner;
+			return this;
+		}
+
+		/**
+		 * @param playerNames array of player Names.
+		 * @return ChutesNLaddersBuilder
+		 */
+		public ChutesNLaddersBuilder withPlayers(String[] playerNames) {
+			this.players = playerNames;
+			return this;
+		}
+
+		/**
+		 * Build ChutesNLadders game instance.
+		 * @return IGame instance
+		 */
+		public IGame build() {
+			ChutesNLadders game = new ChutesNLadders();
+			game.board = this.board;
+			game.players = this.players;
+			game.spinner = this.spinner;
+			return game;
+		}
 
 	}
 

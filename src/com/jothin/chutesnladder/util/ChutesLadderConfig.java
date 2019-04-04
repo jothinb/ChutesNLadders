@@ -7,7 +7,7 @@ package com.jothin.chutesnladder.util;
  */
 public class ChutesLadderConfig {
 	
-	public static int BOARD_SIZE =100;
+	public static int BOARD_SIZE =10*10;
 	public static int[][] LADDER_SQUARES = { { 4, 14 }, { 9, 31 }, { 21, 42 }, { 28, 84 }, { 36, 43 }, { 51, 68 }, { 71, 91 },
 			{ 80, 100 } };
 	public static int[][] CHUTES_SQUARES = { { 98, 78 }, { 95, 75 }, { 93, 73 }, { 87, 24 }, { 64, 60 }, { 62, 19 }, { 56, 53 },

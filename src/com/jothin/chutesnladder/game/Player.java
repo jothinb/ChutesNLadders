@@ -19,6 +19,10 @@ public class Player {
 		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * @param name
+	 * @param spinPositionRank  S
+	 */
 	public Player(String name,int spinPositionRank) {
 		this.name =name;
 		this.spinPositionRank = spinPositionRank;

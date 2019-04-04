@@ -12,7 +12,6 @@ public interface IGame {
 	
 	/**
 	 * Play the game with given players.
-	 * @param players Players
 	 */
-	void play(String [] players);
+	void play();
 }

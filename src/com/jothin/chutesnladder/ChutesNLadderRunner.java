@@ -2,6 +2,14 @@ package com.jothin.chutesnladder;
 
 import com.jothin.chutesnladder.board.Spinner;
 import com.jothin.chutesnladder.game.ChutesNLadders;
+import com.jothin.chutesnladder.game.IGame;
+
+import static com.jothin.chutesnladder.util.ChutesLadderConfig.BOARD_SIZE;
+import static com.jothin.chutesnladder.util.ChutesLadderConfig.CHUTES_SQUARES;
+import static com.jothin.chutesnladder.util.ChutesLadderConfig.LADDER_SQUARES;
+import static com.jothin.chutesnladder.util.ChutesLadderConfig.SPIN_MAX;
+import static com.jothin.chutesnladder.util.ChutesLadderConfig.SPIN_MIN;
+
 
 /**
  * 
@@ -15,7 +23,7 @@ public class ChutesNLadderRunner {
 	public static void main(String[] args) {
 		
 		
-		// Uncomment to get the player information from User
+		// Uncomment to get the player names from Command Line
 		/*Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter no  Players between 2 to 4: ");
 		
@@ -35,8 +43,8 @@ public class ChutesNLadderRunner {
 		scanner.close(); */
 		
 		String[] playerNames = autoGeneratePlayers();
-		ChutesNLadders game = new ChutesNLadders(playerNames);
-		game.play(playerNames);
+		IGame game =new ChutesNLadders.ChutesNLaddersBuilder(BOARD_SIZE, LADDER_SQUARES, CHUTES_SQUARES).withSpinner(SPIN_MIN, SPIN_MAX).withPlayers(playerNames).build();
+		game.play();
 
 	}
 
